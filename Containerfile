@@ -4,7 +4,7 @@ COPY build_files /
 
 # Base Image
 # Check upstream from https://github.com/ublue-os/bazzite/pkgs/container/bazzite-deck/versions?filters[version_type]=tagged
-FROM ghcr.io/ublue-os/bazzite-deck:stable-43.20260415
+FROM ghcr.io/ublue-os/bazzite-deck:stable-44.20260515
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
