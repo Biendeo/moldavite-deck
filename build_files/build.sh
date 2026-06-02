@@ -8,8 +8,6 @@ dnf5 install -y wireshark
 chgrp wireshark /usr/sbin/dumpcap
 chmod o-rx /usr/sbin/dumpcap
 
-rpm-ostree install kernel-devel-$(uname -r) gcc make
-
 cd /tmp
 wget https://raw.githubusercontent.com/OpenZotacZone/ZotacZone-Drivers/main/install_openzone_drivers.sh
 chmod +x install_openzone_drivers.sh
