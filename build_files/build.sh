@@ -8,8 +8,9 @@ dnf5 install -y wireshark
 chgrp wireshark /usr/sbin/dumpcap
 chmod o-rx /usr/sbin/dumpcap
 
-dnf5 copr enable hhd-dev/hhd -y
-dnf5 install hhd adjustor hhd-ui -y
+dnf5 remove -y inputplumber
+dnf5 copr enable -y hhd-dev/hhd
+dnf5 install -y hhd adjustor hhd-ui
 systemctl enable hhd@$(whoami)
 
 # cd /tmp
