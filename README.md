@@ -130,9 +130,14 @@ The [Containerfile](./Containerfile) defines the operations used to customize th
 
 The [build.sh](./build_files/build.sh) file is called from your Containerfile. It is the best place to install new packages or make any other customization to your system. There are customization examples contained within it for your perusal.
 
-## build.yml
+## Stable / Unstable workflows
 
-The [build.yml](./.github/workflows/build.yml) Github Actions workflow creates your custom OCI image and publishes it to the Github Container Registry (GHCR). By default, the image name will match the Github repository name. There are several environment variables at the start of the workflow which may be of interest to change.
+The `build-stable.yml` and `build-unstable.yml` workflows produce two separate OCI artifacts:
+
+- `build-stable.yml` publishes the stable image from `Containerfile.stable` and `build_files/stable/**`
+- `build-unstable.yml` publishes the unstable image from `Containerfile.unstable` and `build_files/unstable/**`
+
+Stable and unstable are built independently so changes in one stream do not rebuild the other.
 
 # Building Disk Images
 
@@ -145,7 +150,7 @@ This template provides a way to upload the disk images that is generated from th
 The [build-disk.yml](./.github/workflows/build-disk.yml) Github Actions workflow creates a disk image from your OCI image by utilizing the [bootc-image-builder](https://osbuild.org/docs/bootc/). In order to use this workflow you must complete the following steps:
 
 1. Modify `disk_config/iso.toml` to point to your custom container image before generating an ISO image.
-2. If you changed your image name from the default in `build.yml` then in the `build-disk.yml` file edit the `IMAGE_REGISTRY`, `IMAGE_NAME` and `DEFAULT_TAG` environment variables with the correct values. If you did not make changes, skip this step.
+2. If you changed your image name from the default in `build-stable.yml` then in the `build-disk.yml` file edit the `IMAGE_REGISTRY`, `IMAGE_NAME` and `DEFAULT_TAG` environment variables with the correct values. If you did not make changes, skip this step.
 3. Finally, if you want to upload your disk images to S3 then you will need to add your S3 configuration to the repository's Action secrets. This can be found by going to your repository settings, under `Secrets and Variables` -> `Actions`. You will need to add the following
   - `S3_PROVIDER` - Must match one of the values from the [supported list](https://rclone.org/s3/)
   - `S3_BUCKET_NAME` - Your unique bucket name

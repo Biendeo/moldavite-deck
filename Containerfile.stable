@@ -1,10 +1,10 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
-COPY build_files /
+COPY build_files/stable /
 
 # Base Image
 # Check upstream from https://github.com/ublue-os/bazzite/pkgs/container/bazzite-deck/versions?filters[version_type]=tagged
-FROM ghcr.io/ublue-os/bazzite-deck:testing-44.20260704
+FROM ghcr.io/ublue-os/bazzite-deck:stable-43.20260420
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
