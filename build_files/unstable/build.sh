@@ -42,3 +42,6 @@ dnf5 install -y \
 # chmod +x install_openzone_drivers.sh
 # echo y | sudo ./install_openzone_drivers.sh
 # rm install_openzone_drivers.sh
+
+cp /ctx/files/usr/share/plymouth/themes/spinner/watermark.png /usr/share/plymouth/themes/spinner/watermark.png
+cp /ctx/files/usr/share/icons/hicolor/scalable/places/distributor-logo-steamdeck.svg /usr/share/icons/hicolor/scalable/places/distributor-logo-steamdeck.svg
